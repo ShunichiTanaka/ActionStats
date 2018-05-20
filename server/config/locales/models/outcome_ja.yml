@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      outcome: 何した
+    attributes:
+      outcome:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        name: 名称
+        published: 公開済フラグ

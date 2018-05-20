@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    models:
+      administrator: 管理者
+    attributes:
+      administrator:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        email: メールアドレス
+        encrypted_password: パスワード
+        password: パスワード
+        password_confirmation: パスワード（再入力）
+        reset_password_token: リセットパスワードトークン
+        reset_password_sent_at: リセットパスワード送信日時
+        sign_in_count: ログイン回数
+        current_sign_in_at: 現ログイン日時
+        last_sign_in_at: 最終ログイン日時
+        current_sign_in_ip: 現ログインIP
+        last_sign_in_ip: 最終ログインIP
+        failed_attempts: 失敗試行回数
+        unlock_token: 凍結解除トークン
+        locked_at: 凍結日時

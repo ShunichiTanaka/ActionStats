@@ -1,0 +1,25 @@
+- @title = '何した一覧'
+p#notice = notice
+p#alert = alert
+
+table
+  thead
+    tr
+      th = t('activerecord.attributes.outcome.name')
+      th = t('activerecord.attributes.outcome.published')
+      th
+      th
+      th
+
+  tbody
+    - @outcomes.each do |outcome|
+      tr
+        td = outcome.name
+        td = outcome.published
+        td = link_to '詳細', service_outcome_path(outcome)
+        td = link_to '編集', edit_service_outcome_path(outcome)
+        td = link_to '削除', service_outcome_path(outcome), data: { confirm: '本当に削除しますか' }, method: :delete
+
+br
+
+= link_to '新規登録', new_service_outcome_path

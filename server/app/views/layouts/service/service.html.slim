@@ -1,0 +1,16 @@
+/!DOCTYPE html
+html
+  head
+    title
+      | #{@title} | ActionStats管理
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body[data-turbolinks="false"]
+    = render 'layouts/service/header'
+    br
+    h2 = @title
+    = yield

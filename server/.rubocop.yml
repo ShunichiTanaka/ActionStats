@@ -1,0 +1,39 @@
+Rails:
+  Enabled: true
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'public/**/*'
+    - 'vendor/**/*'
+    - 'spec/rails_helper.rb'
+    - 'spec/spec_helper.rb'
+  TargetRubyVersion: 2.5
+AsciiComments:
+  Enabled: false
+Layout/EmptyLinesAroundBlockBody:
+  Exclude:
+    - 'spec/**/*'
+Metrics/LineLength:
+  Max: 150
+Metrics/MethodLength:
+  Max: 20
+Naming/FileName:
+  Exclude:
+    - 'Gemfile'
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/StringLiterals:
+  Exclude:
+    - 'spec/**/*'
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/development.rb
+    - config/routes.rb
+    - db/migrate/*
+    - spec/**/*.rb

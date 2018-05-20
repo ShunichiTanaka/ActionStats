@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      user_outcome: 統計
+    attributes:
+      user_outcome:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        post_date: 投稿日
+        post_time: 投稿時間帯
+        user: ユーザ
+        user_id: ユーザID
+        outcome_id: 何したID
+        outcome: 何した
+        reaction: リアクション
+        comment: コメント

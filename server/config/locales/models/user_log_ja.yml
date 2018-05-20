@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      user_log: ユーザログ
+    attributes:
+      user_log:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        target_date: 対象日
+        male_10: 男10代以下
+        male_20: 男20代
+        male_30: 男30代
+        male_40: 男40代
+        male_50: 男50代
+        male_60: 男60代以上
+        female_10: 女10代以下
+        female_20: 女20代
+        female_30: 女30代
+        female_40: 女40代
+        female_50: 女50代
+        female_60: 女60代以上
