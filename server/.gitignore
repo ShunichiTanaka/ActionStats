@@ -33,3 +33,4 @@
 .rspec
 .byebug_history
 .env
+/config/database.yml
