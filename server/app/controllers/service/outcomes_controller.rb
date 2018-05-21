@@ -1,7 +1,7 @@
 module Service
   class OutcomesController < ServiceController
     def index
-      @outcomes = Outcome.all
+      @outcomes = Outcome.all.order(:category_id, :id)
     end
 
     def show
@@ -47,6 +47,13 @@ module Service
       redirect_to service_outcomes_url, notice: '削除されました'
     end
 
+    def publish_all
+      return redirect_to service_outcomes_path, alert: 'チェックを入れてください' unless params[:publish]
+      checked_data = params[:publish].keys
+      checked_data.each(&method(:publish_outcome))
+      redirect_to service_outcomes_path, notice: after_published_message
+    end
+
     private
 
     def load_outcome
@@ -59,6 +66,16 @@ module Service
 
     def load_categories_selection
       @categories_selection = Category.pluck(:name, :id)
+    end
+
+    def publish_outcome(outcome_id)
+      outcome = Outcome.find_by(id: outcome_id)
+      return unless outcome
+      outcome.update published: params[:unpublish].blank?
+    end
+
+    def after_published_message
+      params[:unpublish].blank? ? '一括公開しました' : '一括非公開しました'
     end
   end
 end

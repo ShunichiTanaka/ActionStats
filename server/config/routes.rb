@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   namespace :service do
     resources :categories
-    resources :outcomes
+    resources :outcomes do
+      collection do
+        post :publish_all
+      end
+    end
     root 'home#index'
   end
 end
