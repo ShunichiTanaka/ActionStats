@@ -10,17 +10,22 @@ module Service
     end
 
     def new
+      load_categories_selection
       @outcome = Outcome.new
     end
 
     def edit
+      load_categories_selection
       load_outcome
-      return redirect_to service_outcomes_path, alert: '見つかりません' unless @outcome
+      redirect_to service_outcomes_path, alert: '見つかりません' unless @outcome
     end
 
     def create
       @outcome = Outcome.new(outcome_params)
-      return render :new unless @outcome.save
+      unless @outcome.save
+        load_categories_selection
+        return render :new
+      end
       redirect_to service_outcomes_path, notice: '作成されました'
     end
 
@@ -28,7 +33,10 @@ module Service
       load_outcome
       return redirect_to service_outcomes_path, alert: '見つかりません' unless @outcome
       @outcome.attributes = outcome_params
-      return render :edit unless @outcome.save
+      unless @outcome.save
+        load_categories_selection
+        return render :edit
+      end
       redirect_to service_outcome_path(@outcome), notice: '更新されました'
     end
 
@@ -46,7 +54,11 @@ module Service
     end
 
     def outcome_params
-      params.require(:outcome).permit(:name, :published)
+      params.require(:outcome).permit(:category_id, :name, :published)
+    end
+
+    def load_categories_selection
+      @categories_selection = Category.pluck(:name, :id)
     end
   end
 end

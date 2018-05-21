@@ -2,7 +2,7 @@ class User < ApplicationRecord
   enum gender: { male: 1, female: 2 }
   enum prefecture: Prefectures::PREFECTURES
 
-  has_many :users_outcomes
+  has_many :users_outcomes, dependent: :destroy
   has_many :outcomes, through: :users_outcomes
 
   validates :gender, presence: true

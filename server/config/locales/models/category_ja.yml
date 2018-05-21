@@ -1,13 +1,10 @@
 ja:
   activerecord:
     models:
-      outcome: 何した
+      category: カテゴリ
     attributes:
-      outcome:
+      category:
         id: ID
         created_at: 登録日時
         updated_at: 更新日時
-        category: カテゴリ
-        category_id: カテゴリID
         name: 名称
-        published: 公開済フラグ

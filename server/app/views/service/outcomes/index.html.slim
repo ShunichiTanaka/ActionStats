@@ -5,6 +5,7 @@ p#alert = alert
 table
   thead
     tr
+      th = t('activerecord.attributes.outcome.category')
       th = t('activerecord.attributes.outcome.name')
       th = t('activerecord.attributes.outcome.published')
       th
@@ -14,6 +15,7 @@ table
   tbody
     - @outcomes.each do |outcome|
       tr
+        td = outcome.category&.name
         td = outcome.name
         td = outcome.published
         td = link_to '詳細', service_outcome_path(outcome)

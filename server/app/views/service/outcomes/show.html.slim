@@ -3,6 +3,9 @@ p#notice = notice
 table
   tbody
     tr
+      td = t('activerecord.attributes.outcome.category')
+      td = @outcome.category&.name
+    tr
       td = t('activerecord.attributes.outcome.name')
       td = @outcome.name
     tr

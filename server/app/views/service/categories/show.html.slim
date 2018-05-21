@@ -1,0 +1,14 @@
+p#notice = notice
+
+table
+  tbody
+    tr
+      td = t('activerecord.attributes.category.name')
+      td = @category.name
+    tr
+      td 登録済「何した」数
+      td = @category.outcomes.count
+
+= link_to '編集', edit_service_category_path(@category)
+'
+= link_to '戻る', service_categories_path

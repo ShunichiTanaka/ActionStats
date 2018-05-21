@@ -1,0 +1,8 @@
+- @title = 'カテゴリ編集'
+
+= render 'form', request_url: service_category_path(@category)
+
+= link_to '詳細', service_category_path(@category)
+'
+= link_to '戻る', service_categories_path
+

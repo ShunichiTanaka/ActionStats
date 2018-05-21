@@ -1,0 +1,12 @@
+= form_for @category, url: request_url do |f|
+  - if @category.errors.any?
+    #error_explanation
+      h2 = 'エラーがあります'
+      ul
+        - @category.errors.full_messages.each do |message|
+          li = message
+
+  = f.label :name
+  = f.text_field :name
+
+  .actions = f.submit

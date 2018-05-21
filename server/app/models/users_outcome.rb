@@ -2,6 +2,8 @@ class UsersOutcome < ApplicationRecord
   belongs_to :user
   belongs_to :outcome
 
+  # TODO: enum :reaction
+
   validates :post_date, presence: true
   validates :post_time, presence: true
   validates :reaction, presence: true

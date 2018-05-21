@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_19_004703) do
+ActiveRecord::Schema.define(version: 2018_05_21_123124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,11 +35,20 @@ ActiveRecord::Schema.define(version: 2018_05_19_004703) do
     t.index ["unlock_token"], name: "index_administrators_on_unlock_token", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
+  end
+
   create_table "outcomes", force: :cascade do |t|
+    t.integer "category_id", null: false
     t.string "name", null: false
     t.boolean "published", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_outcomes_on_category_id"
     t.index ["name"], name: "index_outcomes_on_name", unique: true
   end
 
