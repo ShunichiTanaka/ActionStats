@@ -67,5 +67,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'devise'
 gem 'enum_help'
+gem 'jquery-rails'
 gem 'rubocop'
 gem 'slim-rails'

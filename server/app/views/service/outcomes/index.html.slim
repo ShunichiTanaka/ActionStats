@@ -17,7 +17,7 @@ p#alert = alert
     tbody
       - @outcomes.each do |outcome|
         tr
-          td = check_box_tag "publish[#{outcome.id}]", outcome.id
+          td = check_box_tag "publish[#{outcome.id}]", outcome.id, nil, class: :publish_all_class
           td = outcome.category&.name
           td = outcome.name
           td = outcome.published
@@ -25,9 +25,9 @@ p#alert = alert
           td = link_to '編集', edit_service_outcome_path(outcome)
           td = link_to '削除', service_outcome_path(outcome), data: { confirm: '本当に削除しますか' }, method: :delete
 
-  = submit_tag '一括公開'
+  = submit_tag '一括公開', disabled: true, class: :publish_all_button
   br
-  = submit_tag '一括非公開', name: :unpublish
+  = submit_tag '一括非公開', name: :unpublish, disabled: true, class: :publish_all_button
 br
 
 = link_to '新規登録', new_service_outcome_path
