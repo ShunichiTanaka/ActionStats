@@ -6,6 +6,7 @@ table
   thead
     tr
       th = t('activerecord.attributes.category.name')
+      th = t('activerecord.attributes.category.display_order')
       th
       th
       th
@@ -14,6 +15,7 @@ table
     - @categories.each do |category|
       tr
         td = category.name
+        td = category.display_order
         td = link_to '詳細', service_category_path(category)
         td = link_to '編集', edit_service_category_path(category)
         td = link_to '削除', service_category_path(category), data: { confirm: '本当に削除しますか' }, method: :delete

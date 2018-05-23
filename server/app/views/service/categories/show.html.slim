@@ -6,6 +6,9 @@ table
       td = t('activerecord.attributes.category.name')
       td = @category.name
     tr
+      td = t('activerecord.attributes.category.display_order')
+      td = @category.display_order
+    tr
       td 登録済「何した」数
       td = @category.outcomes.count
 

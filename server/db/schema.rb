@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2018_05_21_123124) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "display_order", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_categories_on_name", unique: true
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(version: 2018_05_21_123124) do
     t.integer "category_id", null: false
     t.string "name", null: false
     t.boolean "published", default: false, null: false
+    t.integer "display_order", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_outcomes_on_category_id"

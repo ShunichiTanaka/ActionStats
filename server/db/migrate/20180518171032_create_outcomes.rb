@@ -4,6 +4,7 @@ class CreateOutcomes < ActiveRecord::Migration[5.2]
       t.integer :category_id, null: false
       t.string :name, null: false
       t.boolean :published, null: false, default: false
+      t.integer :display_order, null: false, default: 0
 
       t.timestamps
 

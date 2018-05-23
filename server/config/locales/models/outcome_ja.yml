@@ -11,3 +11,4 @@ ja:
         category_id: カテゴリID
         name: 名称
         published: 公開済フラグ
+        display_order: 表示順

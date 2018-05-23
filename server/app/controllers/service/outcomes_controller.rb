@@ -1,7 +1,7 @@
 module Service
   class OutcomesController < ServiceController
     def index
-      @outcomes = Outcome.all.order(:category_id, :id)
+      @outcomes = Outcome.all.order(:display_order, :category_id)
     end
 
     def show
@@ -61,7 +61,7 @@ module Service
     end
 
     def outcome_params
-      params.require(:outcome).permit(:category_id, :name, :published)
+      params.require(:outcome).permit(:category_id, :name, :published, :display_order)
     end
 
     def load_categories_selection

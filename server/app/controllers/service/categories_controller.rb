@@ -1,7 +1,7 @@
 module Service
   class CategoriesController < ServiceController
     def index
-      @categories = Category.all
+      @categories = Category.all.order(:display_order)
     end
 
     def show
@@ -46,7 +46,7 @@ module Service
     end
 
     def category_params
-      params.require(:category).permit(:name)
+      params.require(:category).permit(:name, :display_order)
     end
   end
 end

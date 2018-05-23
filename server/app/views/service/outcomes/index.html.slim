@@ -10,6 +10,7 @@ p#alert = alert
         th = t('activerecord.attributes.outcome.category')
         th = t('activerecord.attributes.outcome.name')
         th = t('activerecord.attributes.outcome.published')
+        th = t('activerecord.attributes.outcome.display_order')
         th
         th
         th
@@ -21,6 +22,7 @@ p#alert = alert
           td = outcome.category&.name
           td = outcome.name
           td = outcome.published
+          td = outcome.display_order
           td = link_to '詳細', service_outcome_path(outcome)
           td = link_to '編集', edit_service_outcome_path(outcome)
           td = link_to '削除', service_outcome_path(outcome), data: { confirm: '本当に削除しますか' }, method: :delete
