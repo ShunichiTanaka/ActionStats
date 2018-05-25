@@ -43,6 +43,7 @@ module Service
     def destroy
       load_outcome
       return redirect_to service_outcomes_path, alert: '見つかりません' unless @outcome
+      return redirect_to service_outcomes_path, alert: '公開中の「何した」は削除できません' if @outcome.published
       @outcome.destroy
       redirect_to service_outcomes_url, notice: '削除されました'
     end
