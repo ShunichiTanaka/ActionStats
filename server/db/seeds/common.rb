@@ -2,10 +2,10 @@ module Seeds
   module Common
     def exec
       puts "==== START #{model.table_name} ===="
-      CSV.foreach("db/seeds/csvs/#{model.table_name}.csv") do |row|
-        next puts "   exist  #{row[0]}" unless model.where(id: row[0]).count == 0
-        puts "  create  #{row[0]}: #{row[1]}"
-        model.create! data_hash(row)
+      CSV.foreach("db/seeds/csvs/#{model.table_name}.csv").with_index(1) do |row, id|
+        next puts "   exist  #{id}" unless model.where(id: id).count == 0
+        puts "  create  #{id}: #{row[1]}"
+        model.create! data_hash(row).merge(id: id)
       end
       puts "==== END #{model.table_name} ===="
     end
@@ -17,13 +17,11 @@ module Seeds
     end
 
     def data_hash(row)
-      (0 .. column_names.length).map do |num|
-        next [:id, row[0]] if num == 0
-        [column_names[num - 1], row[num]]
+      column_names.map.with_index do |column_name, i|
+        [column_name, row[i]]
       end.to_h
     end
 
-    # 「id」は共通なので省略する
     def column_names
       fail NoMethodError, "Method 'column_names' must be overridden."
     end
