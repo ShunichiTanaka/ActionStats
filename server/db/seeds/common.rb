@@ -3,7 +3,7 @@ module Seeds
     def exec
       puts "==== START #{model.table_name} ===="
       CSV.foreach("db/seeds/csvs/#{model.table_name}.csv").with_index(1) do |row, id|
-        next puts "   exist  #{id}" unless model.where(id: id).count == 0
+        next puts "   exist  #{id}" if model.find_by(id: id)
         puts "  create  #{id}: #{row[0]}"
         model.create! data_hash(row).merge(id: id)
       end
