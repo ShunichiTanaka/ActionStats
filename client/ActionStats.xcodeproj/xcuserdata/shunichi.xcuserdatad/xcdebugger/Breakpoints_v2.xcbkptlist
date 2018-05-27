@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ActionStats/ViewController.swift"
+            timestampString = "549102953.717412"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ActionStats.ViewController.__deallocating_deinit"
+                  moduleName = "ActionStats"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shunichi/Desktop/ActionStats/ActionStats/ViewController.swift"
+                  timestampString = "548495003.811412"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ActionStats.ViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; ActionStats.ViewController"
+                  moduleName = "ActionStats"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shunichi/Desktop/ActionStats/ActionStats/ViewController.swift"
+                  timestampString = "548495003.814571"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ActionStats.ViewController.__allocating_init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; ActionStats.ViewController"
+                  moduleName = "ActionStats"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shunichi/Desktop/ActionStats/ActionStats/ViewController.swift"
+                  timestampString = "548495003.8179539"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ActionStats.ViewController.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;ActionStats.ViewController&gt;"
+                  moduleName = "ActionStats"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shunichi/Desktop/ActionStats/ActionStats/ViewController.swift"
+                  timestampString = "548495003.8204041"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ActionStats.ViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;ActionStats.ViewController&gt;"
+                  moduleName = "ActionStats"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shunichi/Desktop/ActionStats/ActionStats/ViewController.swift"
+                  timestampString = "548495003.822825"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ActionStats/ViewController.swift"
+            timestampString = "549101895.009257"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
