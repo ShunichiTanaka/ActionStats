@@ -13,7 +13,8 @@ table
       td = @outcome.display_order
     tr
       td = t('activerecord.attributes.outcome.published')
-      td = image_tag("#{@outcome.published ? 'check_mark.png' : 'uncheck_mark.png'}", class: 'publish-mark')
+      - published_mark = @outcome.published ? 'check_mark.png' : 'uncheck_mark.png'
+      td = image_tag published_mark, class: 'publish-mark'
 
 = link_to '編集', edit_service_outcome_path(@outcome)
 '
