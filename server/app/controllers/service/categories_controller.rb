@@ -35,6 +35,7 @@ module Service
     def destroy
       load_category
       return redirect_to service_categories_path, alert: '見つかりません' unless @category
+      return redirect_to service_categories_path, alert: '公開中の「何した」が含まれるカテゴリは削除できません' if @category.has_published_outcomes?
       @category.destroy
       redirect_to service_categories_path, notice: '削除されました'
     end
