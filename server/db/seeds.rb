@@ -12,3 +12,11 @@ Dir["#{Rails.root}/db/seeds/*.rb"].each(&method(:require))
 
 Seeds::Categories.exec
 Seeds::Outcomes.exec
+ActiveRecord::Base.connection.execute("SELECT setval('categories_id_seq', coalesce((SELECT MAX(id)+1 FROM categories), 1), false)")
+ActiveRecord::Base.connection.execute("SELECT setval('outcomes_id_seq', coalesce((SELECT MAX(id)+1 FROM outcomes), 1), false)")
+
+if Rails.env.development?
+  Seeds::Users.exec
+  ActiveRecord::Base.connection.execute("SELECT setval('users_id_seq', coalesce((SELECT MAX(id)+1 FROM users), 1), false)")
+  Seeds::UserOutcomes.exec
+end
