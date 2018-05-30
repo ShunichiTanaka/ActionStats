@@ -18,6 +18,11 @@ p#alert = alert
         td 投稿時間帯（To）
         td = f.select :post_time_lteq, 0..23, include_blank: true
       tr
+        td ノーコメントを除外
+        / td = f.check_box :comment_not_null
+        / ↑このやり方では IS NULL と IS NOT NULL のいずれかしか選択できないため、個別実装
+        td = check_box_tag :show_no_comment, nil, params[:show_no_comment].present?
+      tr
         td = f.submit '検索'
         td
 
@@ -52,7 +57,9 @@ p#alert = alert
   table.table-striped
     thead
       tr
+        th ユーザID
         th 性別
+        th 年齢
         th 都道府県
         th リアクション
         th コメント
@@ -61,7 +68,9 @@ p#alert = alert
       - @comments.where(outcome_id: outcome.id).limit(30).each do |comment|
         - user = comment.user
         tr
+          td = user.id
           td = user.gender_i18n
+          td = user.age
           td = user.prefecture_i18n
           td = comment.reaction
           td = comment.comment

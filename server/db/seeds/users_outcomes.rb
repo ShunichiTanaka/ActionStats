@@ -31,6 +31,7 @@ module Seeds
         reaction = rand(4) + 1
         users_outcome.reaction = reaction
         comment = reaction >= 3 ? GOOD_COMMENTS.sample : BAD_COMMENTS.sample
+        return if rand <= 0.5 # 1/2 の確率でノーコメント
         users_outcome.comment = comment
       end
     end
