@@ -1,0 +1,71 @@
+- @title = '統計データ確認'
+p#notice = notice
+p#alert = alert
+
+= search_form_for @q, url: service_users_outcomes_path, method: :get do |f|
+  table.table-striped
+    tbody
+      tr
+        td 「何した」
+        td
+          = f.select :outcome_id_eq, @all_outcome_names, include_blank: true
+          | (TODO: チェックボックス化)
+      tr
+        td 投稿日
+        td = f.text_field :post_date_eq
+      tr
+        td 投稿時間帯（From）
+        td = f.select :post_time_gteq, 0..23, include_blank: true
+      tr
+        td 投稿時間帯（To）
+        td = f.select :post_time_lteq, 0..23, include_blank: true
+      tr
+        td = f.submit '検索'
+        td
+
+- @selected_outcomes.each do |outcome|
+  h2 = outcome.name
+  table.table-striped
+    thead
+      tr
+        th リアクション
+        th 人数
+        th %
+
+    tbody
+      - all_count = 0
+      - hash_data = []
+      - @users_outcomes.where(outcome_id: outcome.id).each do |users_outcome|
+        - hash = {}
+        - hash[:reaction] = users_outcome.reaction
+        - hash[:cnt] = users_outcome.cnt
+        - hash_data << hash
+        - all_count += users_outcome.cnt
+      - hash_data.each do |hash|
+        tr
+          td = hash[:reaction]
+          td = hash[:cnt]
+          td = hash[:cnt].zero? ? 0 : Rational(hash[:cnt] * 100, all_count).to_i
+      tr
+        td 合計
+        td = all_count
+        td = all_count.zero? ? 0 : 100
+  h3 直近のコメント
+  table.table-striped
+    thead
+      tr
+        th 性別
+        th 都道府県
+        th リアクション
+        th コメント
+        th 投稿日時
+    tbody
+      - @comments.where(outcome_id: outcome.id).limit(30).each do |comment|
+        - user = comment.user
+        tr
+          td = user.gender_i18n
+          td = user.prefecture_i18n
+          td = comment.reaction
+          td = comment.comment
+          td = comment.created_at&.strftime('%Y-%m-%d %H:%M:%S')
+
