@@ -7,9 +7,7 @@ p#alert = alert
     tbody
       tr
         td 「何した」
-        td
-          = f.select :outcome_id_eq, @all_outcome_names, include_blank: true
-          | (TODO: チェックボックス化)
+        td =  f.collection_check_boxes :outcome_id_in, @all_outcome_names, :id, :name
       tr
         td 投稿日
         td = f.text_field :post_date_eq

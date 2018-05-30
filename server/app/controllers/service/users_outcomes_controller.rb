@@ -2,8 +2,8 @@ module Service
   class UsersOutcomesController < ServiceController
     def index
       load_users_outcomes
-      @all_outcome_names = Outcome.pluck(:name, :id)
-      @selected_outcomes = @q.outcome_id_eq.present? ? Outcome.where(id: @q.outcome_id_eq).limit(1) : Outcome.all
+      @all_outcome_names = Outcome.all
+      @selected_outcomes = @q.outcome_id_in.present? ? Outcome.where(id: @q.outcome_id_in) : @all_outcome_names
       @comments = @q.result.order(id: :desc)
     end
 
