@@ -26,37 +26,31 @@ p#alert = alert
         td = f.submit '検索'
         td
 
-- @selected_outcomes.each do |outcome|
-  h2 = outcome.name
+- @users_outcomes.each do |outcome_id, users_outcomes|
+  h2 = users_outcomes.first&.outcome.name
+  - all_count = users_outcomes.sum(&:cnt)
   table.table-striped
     thead
       tr.table-success
         th リアクション
         th 人数
         th %
-
     tbody
-      - all_count = 0
-      - hash_data = []
-      - @users_outcomes.where(outcome_id: outcome.id).each do |users_outcome|
-        - hash = {}
-        - hash[:reaction] = users_outcome.reaction
-        - hash[:cnt] = users_outcome.cnt
-        - hash_data << hash
-        - all_count += users_outcome.cnt
-      - hash_data.each do |hash|
+      - users_outcomes.each do |users_outcome|
         tr
-          td = hash[:reaction]
-          td = hash[:cnt]
-          td = all_count.zero? ? '0.0' : format('%.1f', Rational(hash[:cnt] * 100, all_count))
+          td = users_outcome.reaction
+          td = users_outcome.cnt
+          td = all_count.zero? ? '0.0' : format('%.1f', Rational(users_outcome.cnt * 100, all_count))
       tr
         td 合計
         td = all_count
         td = all_count.zero? ? '0.0' : '100.0'
+
   h3 直近のコメント
   table.table-striped
     thead
       tr.table-success
+        th #
         th ユーザID
         th 性別
         th 年齢
@@ -65,9 +59,10 @@ p#alert = alert
         th コメント
         th 投稿日時
     tbody
-      - @comments.where(outcome_id: outcome.id).limit(30).each do |comment|
+      - @comments[outcome_id]&.take(30)&.each&.with_index(1) do |comment, i|
         - user = comment.user
         tr
+          td = i
           td = user.id
           td = user.gender_i18n
           td = user.age
