@@ -2,11 +2,12 @@
 p#notice = notice
 p#alert = alert
 
-table.table-striped
+= link_to '新規登録', new_service_category_path, class: 'btn btn-info'
+table.table-striped.mx-auto.container
   thead
-    tr
-      th = t('activerecord.attributes.category.name')
-      th = t('activerecord.attributes.category.display_order')
+    tr.table-success
+      th.text-center = t('activerecord.attributes.category.name')
+      th.text-center = t('activerecord.attributes.category.display_order')
       th
       th
       th
@@ -15,11 +16,7 @@ table.table-striped
     - @categories.each do |category|
       tr
         td = category.name
-        td = category.display_order
-        td = link_to '詳細', service_category_path(category)
-        td = link_to '編集', edit_service_category_path(category)
-        td = link_to '削除', service_category_path(category), data: { confirm: '本当に削除しますか' }, method: :delete unless category.published_outcomes?
-
-br
-
-= link_to '新規登録', new_service_category_path
+        td.text-center = category.display_order
+        td = link_to '詳細', service_category_path(category), class: 'btn btn-outline-info'
+        td = link_to '編集', edit_service_category_path(category), class: 'btn btn-outline-secondary'
+        td = link_to '削除', service_category_path(category), class: 'btn btn-outline-danger', data: { confirm: '本当に削除しますか' }, method: :delete unless category.published_outcomes?
