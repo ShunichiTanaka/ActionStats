@@ -2,8 +2,7 @@ module Service
   class UsersOutcomesController < ServiceController
     def index
       load_users_outcomes
-      @all_outcome_names = Outcome.all
-      @selected_outcomes = @q.outcome_id_in.present? ? Outcome.where(id: @q.outcome_id_in) : @all_outcome_names
+      load_outcomes
       load_comments
     end
 
@@ -17,10 +16,15 @@ module Service
                           .order(:outcome_id, :reaction)
     end
 
+    def load_outcomes
+      @all_outcome_names = Outcome.all
+      @selected_outcomes = @q.outcome_id_in.present? ? Outcome.where(id: @q.outcome_id_in) : @all_outcome_names
+    end
+
     def load_comments
       all_comments = @q.result
       all_comments = all_comments.where.not(comment: nil) if params[:show_no_comment].present?
-      @comments = all_comments.order(id: :desc).limit(1000)
+      @comments = all_comments.includes(:user).order(id: :desc).limit(1000)
     end
   end
 end
