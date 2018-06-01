@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         post :publish_all
       end
     end
+    resources :users_outcomes, only: :index
     root 'home#index'
   end
 end

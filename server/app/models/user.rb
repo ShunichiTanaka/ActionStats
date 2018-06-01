@@ -12,6 +12,11 @@ class User < ApplicationRecord
 
   before_create :set_registered_at
 
+  def age
+    # 最も若くなるように計算
+    [Time.current.year - year_of_birth.to_i - 1, 0].max
+  end
+
   private
 
   def set_registered_at
