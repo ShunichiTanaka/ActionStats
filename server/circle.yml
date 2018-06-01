@@ -1,0 +1,10 @@
+machine:
+  timezone:
+    Asia/Tokyo
+  ruby:
+    version: 2.5.0
+test:
+  pre:
+    - cd server
+  override:
+    - bundle exec rubocop -c .rubocop.yml
