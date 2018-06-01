@@ -2,7 +2,7 @@
 
 = render 'form', request_url: service_category_path(@category)
 
-= link_to '詳細', service_category_path(@category)
+= link_to '詳細', service_category_path(@category), class: 'btn btn-outline-info'
 '
-= link_to '戻る', service_categories_path
+= link_to '戻る', service_categories_path, class: 'btn btn-outline-secondary'
 

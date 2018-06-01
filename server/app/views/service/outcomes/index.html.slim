@@ -2,15 +2,16 @@
 p#notice = notice
 p#alert = alert
 
+= link_to '新規登録', new_service_outcome_path, class: 'btn btn-info'
 = form_tag publish_all_service_outcomes_path do
-  table.table-striped
+  table.table-striped.mx-auto.container
     thead
-      tr
+      tr.table-success
         th
-        th = t('activerecord.attributes.outcome.category')
-        th = t('activerecord.attributes.outcome.name')
-        th = t('activerecord.attributes.outcome.published')
-        th = t('activerecord.attributes.outcome.display_order')
+        th.text-center = t('activerecord.attributes.outcome.category')
+        th.text-center = t('activerecord.attributes.outcome.name')
+        th.text-center = t('activerecord.attributes.outcome.published')
+        th.text-center = t('activerecord.attributes.outcome.display_order')
         th
         th
         th
@@ -23,14 +24,12 @@ p#alert = alert
           td = outcome.name
           - published_mark = outcome.published ? 'check_mark.png' : 'uncheck_mark.png'
           td = image_tag published_mark, class: 'publish-mark'
-          td = outcome.display_order
-          td = link_to '詳細', service_outcome_path(outcome)
-          td = link_to '編集', edit_service_outcome_path(outcome)
-          td = link_to '削除', service_outcome_path(outcome), data: { confirm: '本当に削除しますか' }, method: :delete unless outcome.published
+          td.text-center = outcome.display_order
+          td = link_to '詳細', service_outcome_path(outcome), class: 'btn btn-outline-info'
+          td = link_to '編集', edit_service_outcome_path(outcome), class: 'btn btn-outline-secondary'
+          td = link_to '削除', service_outcome_path(outcome), class: 'btn btn-outline-danger', data: { confirm: '本当に削除しますか' }, method: :delete unless outcome.published
 
-  = submit_tag '一括公開', disabled: true, class: :publish_all_button
   br
-  = submit_tag '一括非公開', name: :unpublish, disabled: true, class: :publish_all_button
-br
-
-= link_to '新規登録', new_service_outcome_path
+  = submit_tag '一括公開', disabled: true, class: 'publish_all_button btn btn-outline-secondary'
+  | &nbsp;
+  = submit_tag '一括非公開', name: :unpublish, disabled: true, class: 'publish_all_button btn btn-outline-secondary'

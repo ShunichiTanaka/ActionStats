@@ -2,7 +2,7 @@
 
 = render 'form', request_url: service_outcome_path(@outcome)
 
-= link_to '詳細', service_outcome_path(@outcome)
+= link_to '詳細', service_outcome_path(@outcome), class: 'btn btn-outline-info'
 '
-= link_to '戻る', service_outcomes_path
+= link_to '戻る', service_outcomes_path, class: 'btn btn-outline-secondary'
 
