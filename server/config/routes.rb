@@ -17,6 +17,6 @@ Rails.application.routes.draw do
   end
 
   namespace :api, default: { format: :json } do
-    resources :outcomes
+    resources :outcomes, only: %i[index]
   end
 end
