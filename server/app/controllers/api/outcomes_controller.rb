@@ -1,8 +1,8 @@
 module Api
-  class OutcomesController < ApplicationController
+  class OutcomesController < ApiController
     def index
       outcomes = Outcome.all
-      render json: { staus: 200, data: outcomes }
+      response_data outcomes
     end
   end
 end
