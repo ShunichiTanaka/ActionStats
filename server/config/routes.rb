@@ -15,4 +15,8 @@ Rails.application.routes.draw do
     resources :users_outcomes, only: :index
     root 'home#index'
   end
+
+  namespace :api, default: { format: :json } do
+    resources :outcomes
+  end
 end
