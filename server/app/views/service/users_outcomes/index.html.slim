@@ -7,10 +7,18 @@ p#alert = alert
     tbody
       tr
         td 「何した」
-        td =  f.collection_check_boxes :outcome_id_in, @all_outcome_names, :id, :name
+        td
+          - selected_outcome_ids = @users_outcomes.map { |outcome_id, _| outcome_id}.uniq
+          =  f.collection_check_boxes :outcome_id_in, @all_outcome_names, :id, :name do |b|
+            - b.label do
+              = b.check_box
+              - if b.value.in? selected_outcome_ids
+                = link_to(b.text, "#outcome_#{b.value}")
+              - else
+                = b.text
       tr
         td 投稿日
-        td = f.text_field :post_date_eq
+        td = f.text_field :post_date_eq, class: 'date-picker'
       tr
         td 投稿時間帯（From）
         td = f.select :post_time_gteq, 0..23, include_blank: true
@@ -27,7 +35,8 @@ p#alert = alert
         td
 
 - @users_outcomes.each do |outcome_id, users_outcomes|
-  h2 = users_outcomes.first&.outcome.name
+  h2[id="outcome_#{users_outcomes.first&.outcome_id}"]
+    = users_outcomes.first&.outcome.name
   - all_count = users_outcomes.sum(&:cnt)
   table.table-striped
     thead
