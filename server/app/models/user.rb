@@ -19,6 +19,8 @@ class User < ApplicationRecord
   has_many :users_outcomes, dependent: :destroy
   has_many :outcomes, through: :users_outcomes
 
+  scope :active, -> { where(left_at: nil) }
+
   validates :gender, presence: true
   validates :year_of_birth, presence: true
   validates :prefecture, presence: true
@@ -34,6 +36,6 @@ class User < ApplicationRecord
   private
 
   def set_registered_at
-    self.registered_at = Time.zone.now
+    self.registered_at = Time.current.day
   end
 end
