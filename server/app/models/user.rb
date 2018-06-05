@@ -36,6 +36,6 @@ class User < ApplicationRecord
   private
 
   def set_registered_at
-    self.registered_at = Time.current.day
+    self.registered_at = Time.current.to_date
   end
 end
