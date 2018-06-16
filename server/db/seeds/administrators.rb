@@ -1,14 +1,14 @@
 module Seeds
-  module Users
+  module Administrators
     class << self
       include Seeds::Common
 
       def model
-        User
+        Administrator
       end
 
       def column_names
-        %i(gender year_of_birth prefecture registered_at identifier)
+        %i(email password)
       end
     end
   end

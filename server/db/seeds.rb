@@ -17,6 +17,8 @@ ActiveRecord::Base.connection.execute("SELECT setval('outcomes_id_seq', coalesce
 
 if Rails.env.development?
   Seeds::Users.exec
+  Seeds::Administrators.exec
   ActiveRecord::Base.connection.execute("SELECT setval('users_id_seq', coalesce((SELECT MAX(id)+1 FROM users), 1), false)")
+  ActiveRecord::Base.connection.execute("SELECT setval('administrators_id_seq', coalesce((SELECT MAX(id)+1 FROM administrators), 1), false)")
   Seeds::UsersOutcomes.exec
 end

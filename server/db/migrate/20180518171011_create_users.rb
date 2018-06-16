@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.integer :prefecture, null: false
       t.date :registered_at, null: false
       t.date :left_at
-      # TODO: hashフィールドが必要か
+      t.string :identifier, null: false
 
       t.timestamps
 
@@ -15,6 +15,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.index :prefecture
       t.index :registered_at
       t.index :left_at
+      t.index :identifier, unique: true
     end
   end
 end
