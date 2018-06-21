@@ -8,6 +8,7 @@
 #  prefecture    :integer          not null
 #  registered_at :date             not null
 #  left_at       :date
+#  identifier    :string           not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #

@@ -79,9 +79,11 @@ ActiveRecord::Schema.define(version: 2018_05_21_123124) do
     t.integer "prefecture", null: false
     t.date "registered_at", null: false
     t.date "left_at"
+    t.string "identifier", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["gender"], name: "index_users_on_gender"
+    t.index ["identifier"], name: "index_users_on_identifier", unique: true
     t.index ["left_at"], name: "index_users_on_left_at"
     t.index ["prefecture"], name: "index_users_on_prefecture"
     t.index ["registered_at"], name: "index_users_on_registered_at"
