@@ -17,6 +17,13 @@ Rails.application.routes.draw do
   end
 
   namespace :api, default: { format: :json } do
-    # resources :outcomes
+    resources :outcomes, only: [] do
+      post :index, on: :collection
+    end
+    resources :reactions, only: :create
+    resources :users_outcomes, only: [] do
+      post :index, on: :collection
+    end
+    resources :users, only: :create
   end
 end

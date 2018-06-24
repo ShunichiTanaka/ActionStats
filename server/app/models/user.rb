@@ -12,6 +12,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
+require 'securerandom'
 
 class User < ApplicationRecord
   enum gender: { male: 1, female: 2 }
@@ -22,12 +23,13 @@ class User < ApplicationRecord
 
   scope :active, -> { where(left_at: nil) }
 
-  validates :gender, presence: true
-  validates :year_of_birth, presence: true
-  validates :prefecture, presence: true
+  validates :gender, presence: true, inclusion: { in: genders.keys }
+  validates :year_of_birth, presence: true,
+                            numericality: { only_integer: true, greater_than_or_equal_to: 1900, less_than_or_equal_to: Time.current.year }
+  validates :prefecture, presence: true, inclusion: { in: prefectures.keys }
   validates :registered_at, presence: true, unless: :new_record?
 
-  before_create :set_registered_at
+  before_create :set_registered_at, :set_identifier
 
   def age
     # 最も若くなるように計算
@@ -38,5 +40,9 @@ class User < ApplicationRecord
 
   def set_registered_at
     self.registered_at = Time.current.to_date
+  end
+
+  def set_identifier
+    self.identifier = "#{SecureRandom.hex(16)}#{Time.zone.now.strftime('%Y%m%d%H%M%S')}"
   end
 end

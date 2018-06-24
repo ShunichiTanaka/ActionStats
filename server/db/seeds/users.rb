@@ -8,7 +8,7 @@ module Seeds
       end
 
       def column_names
-        %i(gender year_of_birth prefecture registered_at identifier)
+        %i(gender year_of_birth prefecture registered_at)
       end
     end
   end

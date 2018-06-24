@@ -18,9 +18,10 @@ class UsersOutcome < ApplicationRecord
   belongs_to :outcome
 
   # TODO: enum :reaction
+  PERMITTED_REACTIONS = [1, 2, 3, 4].freeze
 
   validates :post_date, presence: true
   validates :post_time, presence: true
-  validates :reaction, presence: true
+  validates :reaction, presence: true, inclusion: { in: PERMITTED_REACTIONS }
   validates :outcome_id, uniqueness: { scope: %i[post_date post_time user_id] }
 end
