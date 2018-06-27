@@ -105,7 +105,7 @@ module Api
       this_year = @now.year
       int_generation = generation.to_i
       case int_generation
-      when [20, 30, 40, 50]
+      when 20, 30, 40, 50
         min = this_year - int_generation - 10
         max = this_year - int_generation - 1
         min..max

@@ -25,9 +25,10 @@ class User < ApplicationRecord
 
   validates :gender, presence: true, inclusion: { in: genders.keys }
   validates :year_of_birth, presence: true,
-                            numericality: { only_integer: true, greater_than_or_equal_to: 1900, less_than_or_equal_to: Time.current.year }
+                            numericality: { only_integer: true, greater_than_or_equal_to: 1900 }
   validates :prefecture, presence: true, inclusion: { in: prefectures.keys }
   validates :registered_at, presence: true, unless: :new_record?
+  validate :negative_age_check
 
   before_create :set_registered_at, :set_identifier
 
@@ -44,5 +45,12 @@ class User < ApplicationRecord
 
   def set_identifier
     self.identifier = "#{SecureRandom.hex(16)}#{Time.zone.now.strftime('%Y%m%d%H%M%S')}"
+  end
+
+  # 生年が未来（年齢が負数）になっていないか
+  def negative_age_check
+    return if year_of_birth.blank?
+    return if year_of_birth.to_i <= Time.current.year
+    errors.add(:year_of_birth, "は#{Time.current.year}以下の値で入力してください")
   end
 end
