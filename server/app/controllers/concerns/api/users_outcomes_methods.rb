@@ -64,7 +64,7 @@ module Api
     def comments(outcome_id)
       @users_outcomes.where(outcome_id: outcome_id)
                      .where.not(comment: nil)
-                     .order(created_at: :desc)
+                     .order(id: :desc)
                      .limit(30)
                      .map do |record|
         {

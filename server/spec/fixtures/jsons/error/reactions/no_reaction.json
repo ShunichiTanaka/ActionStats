@@ -1,0 +1,24 @@
+{
+  "identifier": "b1965b2dfd097f66e8a43732a6da31d520180624193513",
+  "outcomes": [
+    {
+      "id": 2,
+      "reaction": 4,
+      "comment": "[テストコメント] 激務"
+    },
+    {
+      "id": 9,
+      "reaction": 4,
+      "comment": "[テストコメント] 楽しい"
+    },
+    {
+      "id": 10,
+      "comment": "[テストコメント] 普通"
+    },
+    {
+      "id": 23,
+      "reaction": 4,
+      "comment": "[テストコメント] おいしい"
+    }
+  ]
+}
