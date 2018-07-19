@@ -19,7 +19,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         myCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
 
         // Cellに使われるクラスを登録.
-        myCollectionView.register(CustomUICollectionViewCell.self, forCellWithReuseIdentifier: "TestCell")
+        myCollectionView.register(CustomUICollectionViewCell.self, forCellWithReuseIdentifier: "OutcomeCell")
 
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
@@ -43,8 +43,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //データを返すメソッド
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        //コレクションビューから識別子「TestCell」のセルを取得する。
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestCell", for: indexPath as IndexPath)
+        //コレクションビューから識別子「OutcomeCell」のセルを取得する。
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutcomeCell", for: indexPath as IndexPath)
         cell.backgroundColor = UIColor.white
 
         for subview in cell.contentView.subviews {
