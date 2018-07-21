@@ -14,13 +14,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
         // CollectionViewのレイアウトを生成.
         let layout = UICollectionViewFlowLayout()
-        
+
         // Cellの大きさ
         layout.itemSize = CGSize(width: 120, height: 50)
-        
+
         // Cellのマージン
         layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 32, right: 16)
-        
+
         // CollectionViewを生成.
         myCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
 
@@ -51,7 +51,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     {
         //コレクションビューから識別子「OutcomeCell」のセルを取得する。
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutcomeCell", for: indexPath as IndexPath)
-        
+
         // TODO: moduleなどにメソッド化, 明るめの色に統一したい
         // cellの色
         let r = (CGFloat(arc4random_uniform(255) + 1) / 255.0);
