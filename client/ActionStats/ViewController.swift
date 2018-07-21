@@ -52,13 +52,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         //コレクションビューから識別子「OutcomeCell」のセルを取得する。
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutcomeCell", for: indexPath as IndexPath)
 
-        // TODO: moduleなどにメソッド化, 明るめの色に統一したい
-        // cellの色
-        let r = (CGFloat(arc4random_uniform(255) + 1) / 255.0);
-        let g = (CGFloat(arc4random_uniform(255) + 1) / 255.0);
-        let b = (CGFloat(arc4random_uniform(255) + 1) / 255.0);
-        cell.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
-
         for subview in cell.contentView.subviews {
             subview.removeFromSuperview()
         }
@@ -69,6 +62,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         label.sizeToFit()
         label.center = cell.contentView.center
         cell.contentView.addSubview(label)
+
+        // cellの色
+        let r_value = outcomes[indexPath.row]["r"] as! Int
+        let g_value = outcomes[indexPath.row]["g"] as! Int
+        let b_value = outcomes[indexPath.row]["b"] as! Int
+        let r = CGFloat(r_value) / 255.0;
+        let g = CGFloat(g_value) / 255.0;
+        let b = CGFloat(b_value) / 255.0;
+        cell.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
 
         return cell
     }
