@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(version: 2018_05_21_123124) do
     t.string "name", null: false
     t.boolean "published", default: false, null: false
     t.integer "display_order", default: 0, null: false
+    t.integer "r_value", default: 1, null: false
+    t.integer "g_value", default: 1, null: false
+    t.integer "b_value", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_outcomes_on_category_id"

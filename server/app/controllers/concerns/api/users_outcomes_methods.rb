@@ -36,20 +36,35 @@ module Api
     end
 
     def users_outcomes_json
-      records = @users_outcomes.select('outcomes.id AS outcome_id, outcomes.name AS outcome_name, users_outcomes.reaction, COUNT(*) AS cnt')
-                               .group('outcomes.id, users_outcomes.reaction')
-                               .order('outcomes.display_order, users_outcomes.reaction')
-                               .to_a
-
-      records.group_by(&:outcome_id).map do |outcome_id, grouped_records|
+      base_users_outcome_records.group_by(&:outcome_id).map do |outcome_id, grouped_records|
         total_count = grouped_records.sum(&:cnt)
+        first_record = grouped_records.first
         {
-          outcome_name: grouped_records.first.outcome_name,
+          outcome_name: first_record.outcome_name,
+          r: first_record.r_value,
+          g: first_record.g_value,
+          b: first_record.b_value,
           total_count:  total_count,
           reactions:    reactions(grouped_records, total_count),
           comments:     comments(outcome_id)
         }
       end
+    end
+
+    def base_users_outcome_records
+      select_sql = [
+        'outcomes.id AS outcome_id',
+        'outcomes.name AS outcome_name',
+        'outcomes.r_value',
+        'outcomes.g_value',
+        'outcomes.b_value',
+        'users_outcomes.reaction',
+        'COUNT(*) AS cnt'
+      ].join(', ')
+      @users_outcomes.select(select_sql)
+                     .group('outcomes.id, users_outcomes.reaction')
+                     .order('outcomes.display_order, users_outcomes.reaction')
+                     .to_a
     end
 
     def reactions(grouped_records, total_count)

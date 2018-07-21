@@ -5,6 +5,9 @@ class CreateOutcomes < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.boolean :published, null: false, default: false
       t.integer :display_order, null: false, default: 0
+      t.integer :r_value, null: false, default: 1
+      t.integer :g_value, null: false, default: 1
+      t.integer :b_value, null: false, default: 1
 
       t.timestamps
 

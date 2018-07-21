@@ -62,7 +62,7 @@ module Service
     end
 
     def outcome_params
-      params.require(:outcome).permit(:category_id, :name, :published, :display_order)
+      params.require(:outcome).permit(:category_id, :name, :published, :display_order, :r_value, :g_value, :b_value)
     end
 
     def load_categories_selection
