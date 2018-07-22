@@ -20,12 +20,17 @@ module Api
       return false if params[:outcomes].blank?
       outcome_ids = Outcome.published.pluck(:id)
       params[:outcomes].each do |outcome|
-        return false unless outcome[:id].in? outcome_ids
-        return false if outcome[:reaction].blank?
+        return false unless valid_outcome?(outcome, outcome_ids)
       end
       true
     rescue StandardError
       false
+    end
+
+    def valid_outcome?(outcome, outcome_ids)
+      return false unless outcome[:id].in? outcome_ids
+      return false if outcome[:reaction].blank?
+      true
     end
 
     def post_reactions
