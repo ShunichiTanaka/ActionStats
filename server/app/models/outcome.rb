@@ -7,9 +7,9 @@
 #  name          :string           not null
 #  published     :boolean          default(FALSE), not null
 #  display_order :integer          default(0), not null
-#  r_value       :integer          default(1), not null
-#  g_value       :integer          default(1), not null
-#  b_value       :integer          default(1), not null
+#  r_value       :integer          default(255), not null
+#  g_value       :integer          default(255), not null
+#  b_value       :integer          default(255), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
@@ -20,7 +20,7 @@ class Outcome < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :r_value, :g_value, :b_value,
             presence: true,
-            numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 255 }
+            numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 255 }
 
   scope :published, -> { where published: true }
 
