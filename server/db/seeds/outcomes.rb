@@ -8,7 +8,7 @@ module Seeds
       end
 
       def column_names
-        %i(category_id name r_value g_value b_value)
+        %i(category_id name published r_value g_value b_value)
       end
     end
   end

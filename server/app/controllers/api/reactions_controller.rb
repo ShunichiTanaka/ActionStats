@@ -18,7 +18,7 @@ module Api
     def valid_params?
       return false if params[:identifier].blank?
       return false if params[:outcomes].blank?
-      outcome_ids = Outcome.pluck(:id)
+      outcome_ids = Outcome.published.pluck(:id)
       params[:outcomes].each do |outcome|
         return false unless outcome[:id].in? outcome_ids
         return false if outcome[:reaction].blank?

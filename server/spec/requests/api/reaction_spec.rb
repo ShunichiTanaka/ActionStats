@@ -18,7 +18,8 @@ RSpec.describe 'Api Reactions', type: :request do
       @user = FactoryBot.create :user
       @user.update identifier: 'b1965b2dfd097f66e8a43732a6da31d520180624193513'
       category = FactoryBot.create :category
-      @outcomes = (1..30).map { |id| FactoryBot.create :outcome, id: id, category_id: category.id }
+      @outcomes = (1..30).map { |id| FactoryBot.create :outcome, id: id, category_id: category.id, published: true }
+      FactoryBot.create :outcome, id: 31, category_id: category.id
     end
 
     context '正常系' do
@@ -140,6 +141,21 @@ RSpec.describe 'Api Reactions', type: :request do
         subject do
           travel_to '2018-01-01 00:00:00' do
             post '/api/reactions', params: read_error_json_file('no_reaction'), as: :json
+          end
+        end
+
+        it '登録されない' do
+          expect { subject }.to change(UsersOutcome, :count).by(0)
+          expect(response).to be_successful
+          response_json = JSON.parse(response.body)
+          expect(response_json['status']).to eq 2
+        end
+      end
+
+      context '非公開outcome指定' do
+        subject do
+          travel_to '2018-01-01 00:00:00' do
+            post '/api/reactions', params: read_error_json_file('unpublished_outcome'), as: :json
           end
         end
 
