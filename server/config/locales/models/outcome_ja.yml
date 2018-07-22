@@ -12,3 +12,7 @@ ja:
         name: 名称
         published: 公開済フラグ
         display_order: 表示順
+        r_value: R値
+        g_value: G値
+        b_value: B値
+        color_preview: 色プレビュー

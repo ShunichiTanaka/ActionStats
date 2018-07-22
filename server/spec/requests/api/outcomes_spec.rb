@@ -38,6 +38,12 @@ RSpec.describe 'Api Outcomes', type: :request do
         expect(outcome['id']).to eq @outcomes.first.id
         expect(outcome['name']).to be_present
         expect(outcome['name'].class).to eq String
+        expect(outcome['r']).to be_present
+        expect(outcome['r'].class).to eq Integer
+        expect(outcome['g']).to be_present
+        expect(outcome['g'].class).to eq Integer
+        expect(outcome['b']).to be_present
+        expect(outcome['b'].class).to eq Integer
         expect(outcome['name']).to eq @outcomes.first.name
       end
     end

@@ -22,7 +22,8 @@ RSpec.describe 'Api Reactions', type: :request do
       @other3 = FactoryBot.create :user, gender: :female, prefecture: :hokkaido, year_of_birth: 1987 # 30代
       category = FactoryBot.create :category
       @outcomes = (1..30).map do |id|
-        FactoryBot.create :outcome, id: id, category: category, display_order: (31 - id), name: "行動#{id}"
+        FactoryBot.create :outcome, id: id, category: category, display_order: (31 - id), name: "行動#{id}",
+                                    r_value: id, g_value: 30 + id, b_value: 60 + id
       end
     end
 
@@ -60,6 +61,9 @@ RSpec.describe 'Api Reactions', type: :request do
 
           users_outcome = users_outcomes.first
           expect(users_outcome['outcome_name']).to eq '行動30'
+          expect(users_outcome['r']).to eq 30
+          expect(users_outcome['g']).to eq 60
+          expect(users_outcome['b']).to eq 90
           expect(users_outcome['total_count']).to eq 4
           reactions = users_outcome['reactions']
           expect(reactions.count).to eq 4
@@ -79,6 +83,9 @@ RSpec.describe 'Api Reactions', type: :request do
 
           users_outcome = users_outcomes.last
           expect(users_outcome['outcome_name']).to eq '行動1'
+          expect(users_outcome['r']).to eq 1
+          expect(users_outcome['g']).to eq 31
+          expect(users_outcome['b']).to eq 61
           expect(users_outcome['total_count']).to eq 3
           reactions = users_outcome['reactions']
           expect(reactions.count).to eq 3
@@ -116,6 +123,9 @@ RSpec.describe 'Api Reactions', type: :request do
 
           users_outcome = users_outcomes.first
           expect(users_outcome['outcome_name']).to eq '行動30'
+          expect(users_outcome['r']).to eq 30
+          expect(users_outcome['g']).to eq 60
+          expect(users_outcome['b']).to eq 90
           expect(users_outcome['total_count']).to eq 1
           reactions = users_outcome['reactions']
           expect(reactions.count).to eq 1

@@ -15,6 +15,20 @@ table
       td = t('activerecord.attributes.outcome.published')
       - published_mark = @outcome.published ? 'check_mark.png' : 'uncheck_mark.png'
       td = image_tag published_mark, class: 'publish-mark'
+    tr
+      td = t('activerecord.attributes.outcome.r_value')
+      td = @outcome.r_value
+    tr
+      td = t('activerecord.attributes.outcome.g_value')
+      td = @outcome.g_value
+    tr
+      td = t('activerecord.attributes.outcome.b_value')
+      td = @outcome.b_value
+    tr
+      td = t('activerecord.attributes.outcome.color_preview')
+      td
+        span style="background:#{@outcome.color_preview}"
+          | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 = link_to '編集', edit_service_outcome_path(@outcome)
 '

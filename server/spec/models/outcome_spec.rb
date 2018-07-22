@@ -7,6 +7,9 @@
 #  name          :string           not null
 #  published     :boolean          default(FALSE), not null
 #  display_order :integer          default(0), not null
+#  r_value       :integer          default(255), not null
+#  g_value       :integer          default(255), not null
+#  b_value       :integer          default(255), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
