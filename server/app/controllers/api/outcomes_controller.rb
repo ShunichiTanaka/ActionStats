@@ -11,7 +11,7 @@ module Api
     private
 
     def outcomes
-      Outcome.order(:display_order).map do |outcome|
+      Outcome.published.order(:display_order).map do |outcome|
         { name: outcome.name, id: outcome.id, r: outcome.r_value, g: outcome.g_value, b: outcome.b_value }
       end
     end

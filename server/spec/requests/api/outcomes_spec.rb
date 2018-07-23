@@ -17,7 +17,8 @@ RSpec.describe 'Api Outcomes', type: :request do
       @user = FactoryBot.create :user
       @user.update identifier: 'b1965b2dfd097f66e8a43732a6da31d520180624193513'
       @categories = FactoryBot.create_list :category, 5
-      @outcomes   = FactoryBot.create_list :outcome, 30, category: @categories.first
+      @outcomes   = FactoryBot.create_list :outcome, 30, category: @categories.first, published: true
+      FactoryBot.create :outcome, category: @categories.first # 非公開ダミー
     end
 
     context '正常系' do
@@ -32,7 +33,7 @@ RSpec.describe 'Api Outcomes', type: :request do
         expect(response_json['status']).to eq 0
         outcomes = response_json['data']
         expect(outcomes.class).to eq Array
-        expect(outcomes.count).to eq @outcomes.count
+        expect(outcomes.map { |outcome| outcome['id'] }).to match_array @outcomes.map(&:id)
         outcome = outcomes.first
         expect(outcome['id'].class).to eq Integer
         expect(outcome['id']).to eq @outcomes.first.id
