@@ -12,19 +12,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        // CollectionViewのレイアウトを生成.
+        // Generate layout of CollectionView
         let layout = UICollectionViewFlowLayout()
 
-        // Cellの大きさ
+        // Size of cell
         layout.itemSize = CGSize(width: 120, height: 50)
 
-        // Cellのマージン
+        // Margin of cell
         layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 32, right: 16)
 
-        // CollectionViewを生成.
+        // Generate CollectionView
         myCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
 
-        // Cellに使われるクラスを登録.
+        // Register the class used for the cells
         myCollectionView.register(CustomUICollectionViewCell.self, forCellWithReuseIdentifier: "OutcomeCell")
 
         myCollectionView.delegate = self
@@ -40,16 +40,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         // Dispose of any resources that can be recreated.
     }
 
-    //データの個数を返すメソッド
+    // Method whitch returns the number of the data
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return outcomes.count
     }
 
-    //データを返すメソッド
+    // Method whitch returns the data
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        //コレクションビューから識別子「OutcomeCell」のセルを取得する。
+        // Get the cell, the identifier of which is "OutcomeCell", from collectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutcomeCell", for: indexPath as IndexPath)
 
         for subview in cell.contentView.subviews {
@@ -63,7 +63,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         label.center = cell.contentView.center
         cell.contentView.addSubview(label)
 
-        // cellの色
+        // Color of cell
         let r_value = outcomes[indexPath.row]["r"] as! Int
         let g_value = outcomes[indexPath.row]["g"] as! Int
         let b_value = outcomes[indexPath.row]["b"] as! Int
@@ -86,7 +86,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let params:[String:Any] = [
-            // TODO: UserDefaults から取得するようにする
+            // TODO: Fix to get data from UserDefaults
             "identifier": "abc123"
         ]
         do {
