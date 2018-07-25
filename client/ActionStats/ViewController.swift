@@ -40,13 +40,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         // Dispose of any resources that can be recreated.
     }
 
-    // Method whitch returns the number of the data
+    // Method which returns the number of the data
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return outcomes.count
     }
 
-    // Method whitch returns the data
+    // Method which returns the data
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         // Get the cell, the identifier of which is "OutcomeCell", from collectionView
