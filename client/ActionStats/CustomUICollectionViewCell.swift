@@ -11,13 +11,13 @@ class CustomUICollectionViewCell : UICollectionViewCell{
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        // UILabelを生成.
+        // Generate UILabel
         textLabel = UILabel(frame: CGRect(x:0, y:0, width:frame.width, height:frame.height))
         textLabel?.text = "hello"
         textLabel?.backgroundColor = UIColor.white
         textLabel?.textAlignment = NSTextAlignment.center
         
-        // Cellに追加.
+        // Add to cell
         self.contentView.addSubview(textLabel!)
     }
     
