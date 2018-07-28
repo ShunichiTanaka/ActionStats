@@ -4,21 +4,26 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     var myCollectionView : UICollectionView!
 
+    @IBOutlet weak var nextButton: UIButton!
+
     var outcomes: Array<[String: Any]> = []
 
     override func viewDidLoad() {
         loadOutcomes()
 
         super.viewDidLoad()
+
         // Do any additional setup after loading the view, typically from a nib.
 
         // Generate layout of CollectionView
         let layout = UICollectionViewFlowLayout()
 
         // Size of cell
+        // not work
         layout.itemSize = CGSize(width: 120, height: 50)
 
         // Margin of cell
+        // not work
         layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 32, right: 16)
 
         // Generate CollectionView
@@ -32,7 +37,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         while(outcomes.count == 0) {
             sleep(1)
         }
-        self.view.addSubview(myCollectionView)
     }
 
     override func didReceiveMemoryWarning() {
