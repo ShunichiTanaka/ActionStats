@@ -4,13 +4,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     var myCollectionView : UICollectionView!
 
+    @IBOutlet weak var nextButton: UIButton!
+
     var outcomes: Array<[String: Any]> = []
 
     override func viewDidLoad() {
         loadOutcomes()
 
+        while(outcomes.count == 0) {
+            sleep(1)
+        }
         super.viewDidLoad()
+
         // Do any additional setup after loading the view, typically from a nib.
+
+        return
+        // NOTE: All the code below has no meaning, since this function returns here.
 
         // Generate layout of CollectionView
         let layout = UICollectionViewFlowLayout()
@@ -29,9 +38,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
-        while(outcomes.count == 0) {
-            sleep(1)
-        }
+
         self.view.addSubview(myCollectionView)
     }
 
