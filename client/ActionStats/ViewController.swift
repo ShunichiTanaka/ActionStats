@@ -11,19 +11,23 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         loadOutcomes()
 
+        while(outcomes.count == 0) {
+            sleep(1)
+        }
         super.viewDidLoad()
 
         // Do any additional setup after loading the view, typically from a nib.
+
+        return
+        // NOTE: All the code below has no meaning, since this function returns here.
 
         // Generate layout of CollectionView
         let layout = UICollectionViewFlowLayout()
 
         // Size of cell
-        // not work
         layout.itemSize = CGSize(width: 120, height: 50)
 
         // Margin of cell
-        // not work
         layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 32, right: 16)
 
         // Generate CollectionView
@@ -34,9 +38,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
-        while(outcomes.count == 0) {
-            sleep(1)
-        }
+
+        self.view.addSubview(myCollectionView)
     }
 
     override func didReceiveMemoryWarning() {
