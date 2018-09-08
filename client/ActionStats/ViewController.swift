@@ -1,12 +1,13 @@
 import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    var myCollectionView : UICollectionView!
+    var myCollectionView : UICollectionView! // This variable may be no longer needed.
 
+    @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var nextButton: UIButton!
 
     var outcomes: Array<[String: Any]> = []
+    var selectedOutcomeRows = [Int]()
 
     override func viewDidLoad() {
         loadOutcomes()
@@ -17,6 +18,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
 
         // Do any additional setup after loading the view, typically from a nib.
+
+        mainCollectionView.delegate = self
+        mainCollectionView.dataSource = self
 
         return
         // NOTE: All the code below has no meaning, since this function returns here.
@@ -40,6 +44,25 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         myCollectionView.dataSource = self
 
         self.view.addSubview(myCollectionView)
+    }
+
+    // action when cell is tapped
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let index = selectedOutcomeRows.index(of: indexPath.row) {
+            selectedOutcomeRows.remove(at: index)
+        } else {
+            selectedOutcomeRows.append(indexPath.row)
+        }
+        collectionView.reloadItems(at: [indexPath])
+    }
+
+    // action when "next" button is tapped
+    @IBAction func nextButton(_ sender: Any) {
+        // TODO: implement
+        selectedOutcomeRows.sort()
+        for selectedOutcomeRow in selectedOutcomeRows {
+            print(outcomes[selectedOutcomeRow]) // Debug code
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,7 +100,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let r = CGFloat(r_value) / 255.0;
         let g = CGFloat(g_value) / 255.0;
         let b = CGFloat(b_value) / 255.0;
-        cell.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
+        if selectedOutcomeRows.contains(indexPath.row) {
+            cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
+        } else {
+            cell.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
+        }
 
         return cell
     }
