@@ -11,6 +11,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     override func viewDidLoad() {
         loadOutcomes()
+        nextButton.isEnabled = false
 
         while(outcomes.count == 0) {
             sleep(1)
@@ -53,16 +54,25 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         } else {
             selectedOutcomeRows.append(indexPath.row)
         }
+        nextButton.isEnabled = (selectedOutcomeRows.count > 0)
         collectionView.reloadItems(at: [indexPath])
     }
 
     // action when "next" button is tapped
     @IBAction func nextButton(_ sender: Any) {
-        // TODO: implement
+        // This method may not be need since "prepare" method also defines the same thing.
+    }
+
+    // action when "next" button is tapped
+    override func prepare(for seque: UIStoryboardSegue, sender: Any?) {
+        let viewController = seque.destination as! ReactionsViewController
+
         selectedOutcomeRows.sort()
-        for selectedOutcomeRow in selectedOutcomeRows {
-            print(outcomes[selectedOutcomeRow]) // Debug code
+        var selectedOutcomes: Array<[String: Any]> = []
+        for row in selectedOutcomeRows {
+            selectedOutcomes.append(outcomes[row])
         }
+        viewController.selectedOutcomes = selectedOutcomes
     }
 
     override func didReceiveMemoryWarning() {
@@ -107,6 +117,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
 
         return cell
+    }
+
+    // action after "back" button (on the next page) is tapped
+    @IBAction func reselectOutcomes(_ segue: UIStoryboardSegue) {
+        // TODO: implement if needed
     }
 
     func loadOutcomes() {
